@@ -65,7 +65,7 @@ else
 fi
 
 
-
+# log output in logs/diagnostic.log
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Network check performed for $host" >> logs/diagnostic.log
 
 

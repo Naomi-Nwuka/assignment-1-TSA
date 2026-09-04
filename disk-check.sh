@@ -23,11 +23,13 @@ if [[ -z "$1" ]]; then
 fi
 
 
+
 # Validate that it is a number
 if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     echo "Error: threshold must be an integer."
     exit 2
 fi
+
 
 
 # validate that the range
@@ -37,9 +39,11 @@ if (( $1 < 1 || $1 > 100 )); then
 fi
 
 
+
 # Set the default path
 threshold="$1"
 path="${2:-/}" # Use $2 if it exists; otherwise use /
+
 
 
 # Check whether the path exists
@@ -48,11 +52,18 @@ if [[ ! -d "$path" ]]; then
     exit 2
 fi
 
+
 # Get disk usage
 usage=$(df -P "$path" | awk 'NR==2 {print $5}' | tr -d '%')
 
 
-# Set exit code (0=sucess, 1=detect-an-issue-with-space, 2=invalid-input)
+
+# Log output in logs/diagnoatics.log
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Disk check performed on $path; usage=${usage}%; threshold=${threshold}%" >> logs/diagnostic.log
+
+
+
+# Set exit code 
 echo "Disk usage: ${usage}%"
 echo "Threshold: ${threshold}%"
 echo "Path: $path"
@@ -65,5 +76,5 @@ else
     exit 1
 fi
 
-# Log output in logs/diagnostics.log
-echo "$(date '+%Y-%m-%d %H:%M:%S') - Disk check performed on $path; usage=${usage}%; threshold=${threshold}%" >> logs/diagnostic.log
+
+# exit code(0=success, 1= issue-detected, 2=invalid-input)check with echo $?command.
