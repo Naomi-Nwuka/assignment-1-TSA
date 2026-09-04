@@ -1,3 +1,12 @@
+#############################################################################
+# System-info.sh
+
+# Display hostname, current user, date/time, operating system, kernel version,
+# uptime, CPU information, memory information, and current working director
+
+##############################################################################
+
+
 #!/bin/bash
 
 echo "===== SYSTEM INFORMATION ====="
@@ -13,3 +22,6 @@ lscpu
 echo "Memory Information:"
 free -h
 echo "Current Working Directory is $(pwd)"
+
+
+echo "$(date '+%Y-%m-%d %H:%M:%S') - System information check performed" >> logs/diagnostic.log
