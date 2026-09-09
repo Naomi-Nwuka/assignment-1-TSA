@@ -121,8 +121,6 @@ logs/diagnostic.log
 
 Log entries include a timestamp and a description of the operation performed.
 
-The generated log file is not committed to Git. The `logs/.gitkeep` file is used to keep the logs directory in the repository.
-
 ## Testing
 
 ### Check Bash Syntax
