@@ -52,22 +52,17 @@ if [[ ! -d "$path" ]]; then
     exit 2
 fi
 
-
 # Get disk usage
 usage=$(df -P "$path" | awk 'NR==2 {print $5}' | tr -d '%')
 
-
-
-# Log output in logs/diagnoatics.log
-echo "$(date '+%Y-%m-%d %H:%M:%S') - Disk check performed on $path; usage=${usage}%; threshold=${threshold}%" >> logs/diagnostic.log
-
-
-
-# Set exit code 
 echo "Disk usage: ${usage}%"
 echo "Threshold: ${threshold}%"
 echo "Path: $path"
 
+# Log output in logs/diagnoatics.log
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Disk check performed on $path; usage=${usage}%; threshold=${threshold}%" >> logs/diagnostic.log
+
+#Set exit code
 if (( usage < threshold )); then
     echo "Disk usage is below the threshold."
     exit 0
