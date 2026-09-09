@@ -7,10 +7,10 @@ A Bash-based Linux diagnostic toolkit for performing basic system, disk, and net
 ```text
 assignment-1/
 ├── README.md
-├── system-info.sh
 ├── disk-check.sh
-├── network-check.sh
 ├── grade.sh
+├── network-check.sh
+├── system-info.sh
 └── logs/
     └── .gitkeep
 ```
